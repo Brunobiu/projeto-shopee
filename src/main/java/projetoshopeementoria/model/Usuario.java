@@ -42,7 +42,6 @@ public class Usuario implements UserDetails {
 	private String senha;
 	
 	@Column(nullable = false)
-	@Temporal(TemporalType.DATE)
 	private Date dataAtualSenha;
 	
 	@ManyToOne(targetEntity = Pessoa.class)

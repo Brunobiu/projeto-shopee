@@ -36,7 +36,6 @@ public class CupDesc implements Serializable {
 	private BigDecimal valorPorcentDesc;
 	
 	@Column(nullable = false)
-	@Temporal(TemporalType.DATE)
 	private Date dataValidadeCupom;
 
 	public Long getId() {

@@ -46,10 +46,8 @@ public class ContaPagar implements Serializable {
 	private StatusContaPagar status;
 
 	@Column(nullable = false)
-	@Temporal(TemporalType.DATE)
 	private Date dtVencimento;
 
-	@Temporal(TemporalType.DATE)
 	private Date dtPagamento;
 
 	@ManyToOne(targetEntity = Pessoa.class)

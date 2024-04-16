@@ -4,6 +4,7 @@ import javax.servlet.http.HttpSessionActivationListener;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -17,18 +18,9 @@ import projetoshopeementoria.service.ImplementacaoUserDetailsService;
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)
+@Order(1)
 public class WebConfigSecurity extends WebSecurityConfigurerAdapter implements HttpSessionActivationListener{
 
-	@Autowired
-	private ImplementacaoUserDetailsService implementacaoUserDetailsService;
-	
-	
-	/*Irá consultar o user no banco com Spring Security*/
-	@Override
-	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(implementacaoUserDetailsService).passwordEncoder(new BCryptPasswordEncoder());
-		
-	}
 	
 	
 

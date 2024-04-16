@@ -47,7 +47,6 @@ public class NotaFiscalCompra implements Serializable {
 	private BigDecimal valorIcms;
 	
 	@Column(nullable = false)
-	@Temporal(TemporalType.DATE)
 	private Date dataCompra;
 	
 	

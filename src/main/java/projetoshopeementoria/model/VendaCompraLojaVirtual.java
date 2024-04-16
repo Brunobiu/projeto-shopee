@@ -66,11 +66,9 @@ public class VendaCompraLojaVirtual implements Serializable {
 	private Integer diaEntrega;
 
 	@Column(nullable = false)
-	@Temporal(TemporalType.DATE)
 	private Date dataVenda;
 
 	@Column(nullable = false)
-	@Temporal(TemporalType.DATE)
 	private Date dataEntrega;
 
 	public Long getId() {
