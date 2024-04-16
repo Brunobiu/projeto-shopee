@@ -1,11 +1,11 @@
 package projetoshopeementoria;
 
-import java.awt.PageAttributes.MediaType;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.Profile;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -22,6 +22,7 @@ import projetoshopeementoria.controller.AcessoController;
 import projetoshopeementoria.model.Acesso;
 import projetoshopeementoria.repository.AcessoRepository;
 
+@Profile("test")
 @SpringBootTest(classes = ProjetoShopeeApplication.class)
 public class ProjetoShopeeApplicationTests extends  TestCase {
 
