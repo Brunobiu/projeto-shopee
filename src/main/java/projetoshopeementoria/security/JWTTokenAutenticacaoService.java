@@ -36,12 +36,12 @@ public class JWTTokenAutenticacaoService {
 	private static final String HEADER_STRING = "Authorization";
 	
 	/*Ger o token e da resposta para o cliente com JWT*/
-	public void addAuthentication(HttpServletResponse response, String ussename) throws Exception {
+	public void addAuthentication(HttpServletResponse response, String username) throws Exception {
 		
 		/*mostagem do token*/
 		
 		String JWT = Jwts.builder(). /*Chama o gerador de token */
-				setSubject(ussename) /*Adiciona o user*/
+				setSubject(username) /*Adiciona o user*/
 				.setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME)) /*Tempo de expiração*/
 				.signWith(SignatureAlgorithm.HS512, SECRET).compact();
 		

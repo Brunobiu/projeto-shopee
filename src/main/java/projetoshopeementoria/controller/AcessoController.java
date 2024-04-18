@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import projetoshopeementoria.ExceptionMentoriaJava;
 import projetoshopeementoria.model.Acesso;
 import projetoshopeementoria.repository.AcessoRepository;
 import projetoshopeementoria.service.AcessoService;
@@ -30,7 +31,16 @@ public class AcessoController {
 	
 	@ResponseBody  /*Retorno da API*/
 	@PostMapping(value = "**/salvarAcesso") /*Mapeando a URL pra receber um JSON*/
-	public ResponseEntity<Acesso> salvarAcesso(@RequestBody Acesso acesso) {  /*Recebe um JSON e conver pra objeto*/
+	public ResponseEntity<Acesso> salvarAcesso(@RequestBody Acesso acesso) throws ExceptionMentoriaJava {  /*Recebe um JSON e conver pra objeto*/
+		
+		if (acesso.getId() == null) {
+				List<Acesso> acessos = acessoRepository.buscarAcessoDesc(acesso.getDescricao().toUpperCase());
+			
+			if (!acessos.isEmpty()) {
+				throw new ExceptionMentoriaJava("ja existe acesso com a descrição: " + acesso.getDescricao());
+			}
+		}
+		
 		
 		Acesso acessoSalvo = acessoService.save(acesso);
 		
@@ -58,9 +68,13 @@ public class AcessoController {
 	
 	@ResponseBody
 	@GetMapping(value = "**/obterAcesso/{id}")
-	public ResponseEntity<Acesso> obterAcesso(@PathVariable("id") Long id) { 
+	public ResponseEntity<Acesso> obterAcesso(@PathVariable("id") Long id) throws ExceptionMentoriaJava { 
 		
-		Acesso acesso = acessoRepository.findById(id).get();
+		Acesso acesso = acessoRepository.findById(id).orElse(null);
+		
+		if (acesso == null) {
+			throw new ExceptionMentoriaJava("Não encontrou acesso com codigo: " + id);
+		}
 		
 		return new ResponseEntity<Acesso>(acesso,HttpStatus.OK);
 	}
@@ -69,7 +83,7 @@ public class AcessoController {
 	@GetMapping(value = "**/buscarPorDesc/{desc}")
 	public ResponseEntity<List<Acesso>> buscarPorDesc(@PathVariable("desc") String desc) { 
 		
-		List<Acesso> acesso = acessoRepository.buscarAcessoDesc(desc);
+		List<Acesso> acesso = acessoRepository.buscarAcessoDesc(desc.toUpperCase());
 		
 		return new ResponseEntity<List<Acesso>>(acesso,HttpStatus.OK);
 	}
