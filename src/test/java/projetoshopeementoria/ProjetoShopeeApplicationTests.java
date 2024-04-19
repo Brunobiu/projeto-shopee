@@ -1,5 +1,6 @@
 package projetoshopeementoria;
 
+import java.util.Calendar;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -46,7 +47,7 @@ public class ProjetoShopeeApplicationTests extends  TestCase {
 		
 		Acesso acesso = new Acesso();
 		
-		acesso.setDescricao("ROLE_COMPRADOR");
+		acesso.setDescricao("ROLE_COMPRADOR" + Calendar.getInstance().getTimeInMillis());
 		
 		ObjectMapper objectMapper = new ObjectMapper();
 		
@@ -209,9 +210,12 @@ public class ProjetoShopeeApplicationTests extends  TestCase {
 	@Test
 	public void testCadastraAcesso() throws ExceptionMentoriaJava {
 		
+		String desacesso = "ROLE_ADMIN" + Calendar.getInstance().getTimeInMillis();
+
 		Acesso acesso = new Acesso();
 		
-		acesso.setDescricao("ROLE_ADMIN");
+		
+		acesso.setDescricao(desacesso);
 		
 		assertEquals(true, acesso.getId() == null);
 		
@@ -221,7 +225,7 @@ public class ProjetoShopeeApplicationTests extends  TestCase {
 		assertEquals(true, acesso.getId() > 0);
 		
 		/*Validar dados da forma correta*/
-		assertEquals("ROLE_ADMIN", acesso.getDescricao());
+		assertEquals(desacesso, acesso.getDescricao());
 		
 		
 		/*Teste de carregamento*/
