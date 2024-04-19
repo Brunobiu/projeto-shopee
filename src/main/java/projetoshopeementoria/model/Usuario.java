@@ -1,6 +1,7 @@
 package projetoshopeementoria.model;
-import java.sql.Date;
+
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -106,6 +107,7 @@ public class Usuario implements UserDetails {
 	public Date getDataAtualSenha() {
 		return dataAtualSenha;
 	}
+
 	public void setDataAtualSenha(Date dataAtualSenha) {
 		this.dataAtualSenha = dataAtualSenha;
 	}

@@ -1,31 +1,29 @@
 package projetoshopeementoria;
 
+import java.util.Calendar;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Profile;
 
 import junit.framework.TestCase;
-import projetoshopeementoria.model.PessoaFisica;
+import projetoshopeementoria.controller.PessoaController;
 import projetoshopeementoria.model.PessoaJuridica;
-import projetoshopeementoria.repository.PessoaRepository;
-import projetoshopeementoria.service.PessoaUserService;
 
 @Profile("test")
 @SpringBootTest(classes = ProjetoShopeeApplication.class)
 public class TestePessoaUsuario extends  TestCase{
 	
-	@Autowired
-	private PessoaUserService pessoaUserService; 
 	
 	@Autowired
-	private PessoaRepository pessoaRepository;
+	private PessoaController pessoaController;
 	
 	@Test
-	public void testCadPessoaFisica() {
+	public void testCadPessoaFisica() throws ExceptionMentoriaJava {
 		
 		PessoaJuridica pessoaJuridica =new PessoaJuridica();
-		pessoaJuridica.setCnpj("656565654464");
+		pessoaJuridica.setCnpj("" + Calendar.getInstance().getTimeInMillis());
 		pessoaJuridica.setNome("eduardo");
 		pessoaJuridica.setEmail("edaurdo@gmail.com");
 		pessoaJuridica.setTelefone("664664546");
@@ -35,18 +33,7 @@ public class TestePessoaUsuario extends  TestCase{
 		pessoaJuridica.setNomeFantasia("5654565466");
 		pessoaJuridica.setRazaoSocial("5555554554");
 		
-		pessoaRepository.save(pessoaJuridica);
-		
-		
-		/*
-		PessoaFisica pessoaFisica = new PessoaFisica();
-		
-		pessoaFisica.setCpf("65656565464");
-		pessoaFisica.setNome("eduardo");
-		pessoaFisica.setEmail("edaurdo@gmail.com");
-		pessoaFisica.setTelefone("664664546");
-		pessoaFisica.setEmpresa(pessoaFisica);*/
-		
+		pessoaController.salvarPj(pessoaJuridica);
 		
 	}
 
