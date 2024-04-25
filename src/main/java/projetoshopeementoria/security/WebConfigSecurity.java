@@ -57,8 +57,8 @@ public class WebConfigSecurity extends WebSecurityConfigurerAdapter implements H
 	/* Ignora alguas URL livre de autenticação */
 	@Override
 	public void configure(WebSecurity web) throws Exception {
-		//web.ignoring().antMatchers(HttpMethod.GET, "/salvarAcesso", "/deleteAcesso").antMatchers(HttpMethod.POST,
-				//"/salvarAcesso", "/deleteAcesso");
+		web.ignoring().antMatchers(HttpMethod.GET, "/salvarAcesso", "/deleteAcesso").antMatchers(HttpMethod.POST,
+				"/salvarAcesso", "/deleteAcesso");
 		/* Ingnorando URL no momento para nao autenticar */
 	}
 }

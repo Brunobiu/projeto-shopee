@@ -109,8 +109,14 @@
 		    <version>7.3.1</version>
 		</dependency>
 				
+				
 		
-		
+		<!-- Javz mail-->
+		<dependency>
+		    <groupId>com.sun.mail</groupId>
+		    <artifactId>javax.mail</artifactId>
+		    <version>1.6.2</version>
+		</dependency>
 		
 		
 
