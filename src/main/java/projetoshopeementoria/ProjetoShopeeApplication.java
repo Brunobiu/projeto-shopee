@@ -28,6 +28,7 @@ public class ProjetoShopeeApplication implements AsyncConfigurer{
 	}
 
 	
+	/*Envio de email*/
 	@Bean
 	public Executor getAExecutor() {
 		
